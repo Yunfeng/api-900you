@@ -22,6 +22,11 @@ class CarRentalServiceTest {
     priceRequest.setUseType(1);
     priceRequest.setPatternType(1);
 
-    service.searchPrice(priceRequest, secretKey);
+    final String vendorId = "13593";
+    final String version = "1.0";
+    final String channel = "OCH";
+
+
+    service.searchPrice(priceRequest, vendorId, channel, version, secretKey);
   }
 }
