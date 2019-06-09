@@ -138,9 +138,9 @@
   </distributionManagement>
 
   <scm>
-    <connection>scm:git:https://github.com/Yunfeng/api-airpp.git</connection>
-    <developerConnection>scm:git:https://github.com/Yunfeng/api-airpp.git</developerConnection>
-    <url>https://github.com/Yunfeng/api-airpp</url>
+    <connection>scm:git:https://github.com/Yunfeng/api-900you.git</connection>
+    <developerConnection>scm:git:https://github.com/Yunfeng/api-900you.git</developerConnection>
+    <url>https://github.com/Yunfeng/api-900you</url>
     <tag>HEAD</tag>
   </scm>
 
