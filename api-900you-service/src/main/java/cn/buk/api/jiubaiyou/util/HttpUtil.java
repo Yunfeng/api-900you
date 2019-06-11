@@ -10,6 +10,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -143,15 +144,15 @@ public class HttpUtil extends BaseHttpClient {
         String rs = "";
 
         try {
-//            StringEntity entity = new StringEntity(body, "UTF-8");
-//            httpPost.setEntity(entity);
+            StringEntity entity = new StringEntity(content, "UTF-8");
+            httpPost.setEntity(entity);
 
 
             //设置参数
-            List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-                nvps.add(new BasicNameValuePair("data", content));
-
-            httpPost.setEntity(new UrlEncodedFormEntity(nvps, StandardCharsets.UTF_8));
+//            List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+//                nvps.add(new BasicNameValuePair("data", content));
+//
+//            httpPost.setEntity(new UrlEncodedFormEntity(nvps, StandardCharsets.UTF_8));
 
 
             CloseableHttpResponse response = httpClient.execute(httpPost);
