@@ -1,5 +1,6 @@
 package cn.buk.api.jiubaiyou.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import cn.buk.api.jiubaiyou.dto.PriceRequest;
@@ -54,5 +55,7 @@ class CarRentalServiceTest {
     PriceResponse response = service.searchPrice(priceRequest, vendorId, channel, version, secretKey);
 
     assertNotNull(response);
+
+    assertEquals("OK", response.getMsgCode());
   }
 }

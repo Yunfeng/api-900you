@@ -19,6 +19,7 @@ public interface CarRentalService {
    * @param channel 通道
    * @param version 版本
    * @param secretKey 秘钥
+   * @return 返回PriceResponse对象
    */
   PriceResponse searchPrice(PriceRequest request, final String vendorId, final String channel,
       final String version, final String secretKey);
