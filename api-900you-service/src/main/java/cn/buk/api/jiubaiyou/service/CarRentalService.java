@@ -1,5 +1,6 @@
 package cn.buk.api.jiubaiyou.service;
 
+import cn.buk.api.jiubaiyou.dto.OrderQueryRequest;
 import cn.buk.api.jiubaiyou.dto.PriceRequest;
 import cn.buk.api.jiubaiyou.dto.PriceResponse;
 
@@ -23,4 +24,27 @@ public interface CarRentalService {
    */
   PriceResponse searchPrice(PriceRequest request, final String vendorId, final String channel,
       final String version, final String secretKey);
+
+  /**
+   * 创建订单
+   *
+   * @param priceRequest
+   * @param vendorId
+   * @param channel
+   * @param version
+   * @param secretKey
+   * @return
+   */
+  PriceResponse createOrder(PriceRequest priceRequest, String vendorId, String channel, String version, String secretKey);
+
+  /**
+   * 查询订单
+   * @param priceRequest
+   * @param vendorId
+   * @param channel
+   * @param version
+   * @param secretKey
+   * @return
+   */
+  PriceResponse queryOrder(OrderQueryRequest priceRequest, String vendorId, String channel, String version, String secretKey);
 }
