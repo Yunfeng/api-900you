@@ -1,6 +1,7 @@
 package cn.buk.api.jiubaiyou.service;
 
 import cn.buk.api.jiubaiyou.dto.PriceRequest;
+import cn.buk.api.jiubaiyou.dto.PriceResponse;
 
 /**
  * 租车服务接口
@@ -19,6 +20,6 @@ public interface CarRentalService {
    * @param version 版本
    * @param secretKey 秘钥
    */
-  void searchPrice(PriceRequest request, final String vendorId, final String channel,
+  PriceResponse searchPrice(PriceRequest request, final String vendorId, final String channel,
       final String version, final String secretKey);
 }

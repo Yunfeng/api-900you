@@ -82,12 +82,6 @@ public class PriceRequest {
 
 
 
-  @JSONField(name = "DuseLocation")
-  private Location duseLocation;
-
-  @JSONField(name = "AuseLocation")
-  private Location auseLocation;
-
   /**
    * String		用车时间
    *   格式：yyyyMMddHHmm
@@ -139,22 +133,6 @@ public class PriceRequest {
 
   public void setVehicleTypes(int[] vehicleTypes) {
     this.vehicleTypes = vehicleTypes;
-  }
-
-  public Location getDuseLocation() {
-    return duseLocation;
-  }
-
-  public void setDuseLocation(Location duseLocation) {
-    this.duseLocation = duseLocation;
-  }
-
-  public Location getAuseLocation() {
-    return auseLocation;
-  }
-
-  public void setAuseLocation(Location auseLocation) {
-    this.auseLocation = auseLocation;
   }
 
   public Date getUseTime() {

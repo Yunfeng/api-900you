@@ -1,6 +1,9 @@
 package cn.buk.api.jiubaiyou.service;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import cn.buk.api.jiubaiyou.dto.PriceRequest;
+import cn.buk.api.jiubaiyou.dto.PriceResponse;
 import cn.buk.util.DateUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,6 +28,7 @@ class CarRentalServiceTest {
     priceRequest.setFixedCode("SHA");
     priceRequest.setCityCode("2");
 
+    priceRequest.setDuseLocationAddress("静安寺");
     priceRequest.setDuseLocationLongitude("121.145117");
     priceRequest.setDuseLocationLatitude("31.321557");
 
@@ -47,6 +51,8 @@ class CarRentalServiceTest {
     final String channel = "2019167";
 
 
-    service.searchPrice(priceRequest, vendorId, channel, version, secretKey);
+    PriceResponse response = service.searchPrice(priceRequest, vendorId, channel, version, secretKey);
+
+    assertNotNull(response);
   }
 }
