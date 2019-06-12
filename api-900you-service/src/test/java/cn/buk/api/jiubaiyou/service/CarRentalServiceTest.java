@@ -3,6 +3,7 @@ package cn.buk.api.jiubaiyou.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import cn.buk.api.jiubaiyou.dto.OrderCreateRequest;
 import cn.buk.api.jiubaiyou.dto.OrderQueryRequest;
 import cn.buk.api.jiubaiyou.dto.PriceRequest;
 import cn.buk.api.jiubaiyou.dto.PriceResponse;
@@ -61,21 +62,26 @@ class CarRentalServiceTest {
 
   @Test
   void test_createOrder() {
-    PriceRequest priceRequest = new PriceRequest();
-    priceRequest.setUseType(1);
-    priceRequest.setPatternType(1);
-    priceRequest.setFixedCode("SHA");
-    priceRequest.setCityCode("2");
+    OrderCreateRequest request = new OrderCreateRequest();
+    request.setUseType(1);
+    request.setPatternType(1);
+    request.setFixedCode("SHA");
+    request.setCityCode("2");
 
-    priceRequest.setDuseLocationAddress("静安寺");
-    priceRequest.setDuseLocationLongitude("121.145117");
-    priceRequest.setDuseLocationLatitude("31.321557");
+    request.setDuseLocationAddress("静安寺");
+    request.setDuseLocationLongitude("121.145117");
+    request.setDuseLocationLatitude("31.321557");
 
-    priceRequest.setAuseLocationAddress("虹桥国际机场T1航站楼");
-    priceRequest.setAuseLocationLongitude("121.339766");
-    priceRequest.setAuseLocationLatitude("31.196099");
+    request.setAuseLocationAddress("虹桥国际机场T1航站楼");
+    request.setAuseLocationLongitude("121.339766");
+    request.setAuseLocationLatitude("31.196099");
 
-    priceRequest.setUseTime(DateUtil.getCurDateTime());
+    request.setUseTime(DateUtil.addDays(DateUtil.getCurDateTime(), 1));
+//    request.setOrderId("ABCDEFG");
+    request.setOrderId(12345679l);
+    request.setVehicleType(1);
+
+    request.setMobile("18888889999");
 
 //    测试环境
 //    VendorID：为空
@@ -91,12 +97,17 @@ class CarRentalServiceTest {
 
     //TODO 此处有些问题，目前传送的参数明显是错误的，但是系统返回了，明天问问什么含义
 
-//    PriceResponse response = service.createOrder(priceRequest, vendorId, channel, version, secretKey);
-//
-//    assertNotNull(response);
-//
-//    assertEquals("OK", response.getMsgCode());
+    PriceResponse response = service.createOrder(request, vendorId, channel, version, secretKey);
 
+    assertNotNull(response);
+
+    assertEquals("OK", response.getMsgCode());
+
+//    {"ServiceOrderId":"9630898","MsgCode":"OK","Message":"OK"}
+//    {"ServiceOrderId":"9630898","MsgCode":"OK","Message":"OK"}
+//    {"ServiceOrderId":"9630898","MsgCode":"OK","Message":"OK"}
+//    {"ServiceOrderId":"9630898","MsgCode":"OK","Message":"OK"}
+//    {"ServiceOrderId":"9630898","MsgCode":"OK","Message":"OK"}
 //    {"ServiceOrderId":"9630898","MsgCode":"OK","Message":"OK"}
   }
 

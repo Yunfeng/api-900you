@@ -1,5 +1,6 @@
 package cn.buk.api.jiubaiyou.service;
 
+import cn.buk.api.jiubaiyou.dto.OrderCreateRequest;
 import cn.buk.api.jiubaiyou.dto.OrderQueryRequest;
 import cn.buk.api.jiubaiyou.dto.PriceRequest;
 import cn.buk.api.jiubaiyou.dto.PriceResponse;
@@ -27,81 +28,95 @@ public class CarRentalServiceImpl implements CarRentalService {
   }
 
   @Override
-  public PriceResponse createOrder(PriceRequest request, String vendorId, String channel,
+  public PriceResponse createOrder(OrderCreateRequest request, String vendorId, String channel,
       String version, String secretKey) {
-    System.out.println("vendorId: " + vendorId);
 
-    final String timestamp = DateUtil.formatDate(DateUtil.getCurDateTime(), "yyyyMMddHHmmss");
-    System.out.println("timestamp: " + timestamp);
+    final String content = JSON.toJSONString(request);
 
-    final String jsonString = JSON.toJSONString(request);
-    System.out.println("消息体明文：" + jsonString);
+    String responseStr = execApiRequest("ordercreate", content, vendorId, channel, version, secretKey);
 
-    final String encryptedBody;
-    try {
-      encryptedBody = DESUtil.encryptDES(jsonString, secretKey);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return null;
-    }
-    System.out.println("消息体密文：" + encryptedBody);
+    return JSON.parseObject(responseStr, PriceResponse.class);
 
-    final String temp = version  + timestamp + secretKey + encryptedBody.length();
-    System.out.println("拼接内容: " + temp);
-
-
-    //    MD5 签名将供应商 Id、请求时间戳、加密密钥、消息体长度字符串拼接之后 MD5 加密Auth =MD5(VendorID+TimeStamp+SecrectKey+{Envelope加密后内容}.Lenth) 转换为小写字符
-    final String sign = VerifyCodeUtil.MD5(temp);
-    System.out.println(sign);
-
-
-    final String API_URL = "http://api-emu.900etrip.com/openapi/shangyou/" + channel + "/ordercreate/" + version + "/" + timestamp + "/" + sign;
-    System.out.println(API_URL);
-
-    //调用接
-    final String result = HttpUtil.postUrl(API_URL, encryptedBody);
-    System.out.println(result);
-
-    return JSON.parseObject(result, PriceResponse.class);
+//    System.out.println("vendorId: " + vendorId);
+//
+//    final String timestamp = DateUtil.formatDate(DateUtil.getCurDateTime(), "yyyyMMddHHmmss");
+//    System.out.println("timestamp: " + timestamp);
+//
+//    final String jsonString = JSON.toJSONString(request);
+//    System.out.println("消息体明文：" + jsonString);
+//
+//    final String encryptedBody;
+//    try {
+//      encryptedBody = DESUtil.encryptDES(jsonString, secretKey);
+//    } catch (Exception e) {
+//      e.printStackTrace();
+//      return null;
+//    }
+//    System.out.println("消息体密文：" + encryptedBody);
+//
+//    final String temp = version  + timestamp + secretKey + encryptedBody.length();
+//    System.out.println("拼接内容: " + temp);
+//
+//
+//    //    MD5 签名将供应商 Id、请求时间戳、加密密钥、消息体长度字符串拼接之后 MD5 加密Auth =MD5(VendorID+TimeStamp+SecrectKey+{Envelope加密后内容}.Lenth) 转换为小写字符
+//    final String sign = VerifyCodeUtil.MD5(temp);
+//    System.out.println(sign);
+//
+//
+//    final String API_URL = "http://api-emu.900etrip.com/openapi/shangyou/" + channel + "/ordercreate/" + version + "/" + timestamp + "/" + sign;
+//    System.out.println(API_URL);
+//
+//    //调用接
+//    final String result = HttpUtil.postUrl(API_URL, encryptedBody);
+//    System.out.println(result);
+//
+//    return JSON.parseObject(result, PriceResponse.class);
   }
 
   @Override
   public PriceResponse queryOrder(OrderQueryRequest request, String vendorId, String channel,
       String version, String secretKey) {
-    System.out.println("vendorId: " + vendorId);
+    final String content = JSON.toJSONString(request);
 
-    final String timestamp = DateUtil.formatDate(DateUtil.getCurDateTime(), "yyyyMMddHHmmss");
-    System.out.println("timestamp: " + timestamp);
+    String responseStr = execApiRequest("orderquery", content, vendorId, channel, version, secretKey);
 
-    final String jsonString = JSON.toJSONString(request);
-    System.out.println("消息体明文：" + jsonString);
+    return JSON.parseObject(responseStr, PriceResponse.class);
 
-    final String encryptedBody;
-    try {
-      encryptedBody = DESUtil.encryptDES(jsonString, secretKey);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return null;
-    }
-    System.out.println("消息体密文：" + encryptedBody);
-
-    final String temp = version  + timestamp + secretKey + encryptedBody.length();
-    System.out.println("拼接内容: " + temp);
-
-
-    //    MD5 签名将供应商 Id、请求时间戳、加密密钥、消息体长度字符串拼接之后 MD5 加密Auth =MD5(VendorID+TimeStamp+SecrectKey+{Envelope加密后内容}.Lenth) 转换为小写字符
-    final String sign = VerifyCodeUtil.MD5(temp);
-    System.out.println(sign);
-
-
-    final String API_URL = "http://api-emu.900etrip.com/openapi/shangyou/" + channel + "/orderquery/" + version + "/" + timestamp + "/" + sign;
-    System.out.println(API_URL);
-
-    //调用接
-    final String result = HttpUtil.postUrl(API_URL, encryptedBody);
-    System.out.println(result);
-
-    return JSON.parseObject(result, PriceResponse.class);
+//
+//    System.out.println("vendorId: " + vendorId);
+//
+//    final String timestamp = DateUtil.formatDate(DateUtil.getCurDateTime(), "yyyyMMddHHmmss");
+//    System.out.println("timestamp: " + timestamp);
+//
+//    final String jsonString = JSON.toJSONString(request);
+//    System.out.println("消息体明文：" + jsonString);
+//
+//    final String encryptedBody;
+//    try {
+//      encryptedBody = DESUtil.encryptDES(jsonString, secretKey);
+//    } catch (Exception e) {
+//      e.printStackTrace();
+//      return null;
+//    }
+//    System.out.println("消息体密文：" + encryptedBody);
+//
+//    final String temp = version  + timestamp + secretKey + encryptedBody.length();
+//    System.out.println("拼接内容: " + temp);
+//
+//
+//    //    MD5 签名将供应商 Id、请求时间戳、加密密钥、消息体长度字符串拼接之后 MD5 加密Auth =MD5(VendorID+TimeStamp+SecrectKey+{Envelope加密后内容}.Lenth) 转换为小写字符
+//    final String sign = VerifyCodeUtil.MD5(temp);
+//    System.out.println(sign);
+//
+//
+//    final String API_URL = "http://api-emu.900etrip.com/openapi/shangyou/" + channel + "/orderquery/" + version + "/" + timestamp + "/" + sign;
+//    System.out.println(API_URL);
+//
+//    //调用接
+//    final String result = HttpUtil.postUrl(API_URL, encryptedBody);
+//    System.out.println(result);
+//
+//    return JSON.parseObject(result, PriceResponse.class);
   }
 
   private String execApiRequest(final String apiName, final String content, final String vendorId, final String channel, final String version, final String secretKey) {
