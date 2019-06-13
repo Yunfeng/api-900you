@@ -23,7 +23,7 @@ public interface CarRentalService {
    * @param secretKey 秘钥
    * @return 返回PriceResponse对象
    */
-  PriceResponse searchPrice(PriceRequest request, final String vendorId, final String channel,
+  PriceResponse searchPrice(PriceRequest request, final String channel, final String type,
       final String version, final String secretKey);
 
   /**
@@ -36,7 +36,7 @@ public interface CarRentalService {
    * @param secretKey
    * @return
    */
-  PriceResponse createOrder(OrderCreateRequest priceRequest, String vendorId, String channel, String version, String secretKey);
+  PriceResponse createOrder(OrderCreateRequest priceRequest, final String channel, final String type, String version, String secretKey);
 
   /**
    * 查询订单
@@ -47,5 +47,5 @@ public interface CarRentalService {
    * @param secretKey
    * @return
    */
-  PriceResponse queryOrder(OrderQueryRequest priceRequest, String vendorId, String channel, String version, String secretKey);
+  PriceResponse queryOrder(OrderQueryRequest priceRequest, final String channel, final String type, String version, String secretKey);
 }

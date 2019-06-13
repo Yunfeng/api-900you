@@ -9,15 +9,16 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 public class OrderCreateRequest extends AbstractBaseRequest {
   /**
-   * 平台订单号
+   * 我方（租出平台接入方）订单号
    */
-  @JSONField(name = "OrderId")
-  private Long orderId;
+  @JSONField(name = "ThirdOrderID")
+  private String orderNo;
 
 
   /**
    * 产品价格
    */
+  @JSONField(name = "Price")
   private Double price;
 
   /**
@@ -99,11 +100,11 @@ public class OrderCreateRequest extends AbstractBaseRequest {
   }
 
 
-  public Long getOrderId() {
-    return orderId;
+  public String getOrderNo() {
+    return orderNo;
   }
 
-  public void setOrderId(Long orderId) {
-    this.orderId = orderId;
+  public void setOrderNo(String orderNo) {
+    this.orderNo = orderNo;
   }
 }

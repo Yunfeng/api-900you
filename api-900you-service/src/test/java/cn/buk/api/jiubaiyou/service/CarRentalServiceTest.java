@@ -17,6 +17,12 @@ class CarRentalServiceTest {
 
   private CarRentalService service;
 
+  //目前给的测试环境的
+  private final String channel = "shangyou";
+  private final String type = "p2p";
+  private final String version = "1.0";
+
+
   @BeforeEach
   void setUp() {
     service = new CarRentalServiceImpl();
@@ -40,20 +46,8 @@ class CarRentalServiceTest {
 
     priceRequest.setUseTime(DateUtil.getCurDateTime());
 
-//    测试环境
-//    VendorID：为空
-//    Version：1.0
-//    Channel: 为空
-//    TimeStamp：当前时间
-//    secrect Key: 12345678  （测试环境固定为12345678）
 
-    final String vendorId = "";
-    final String version = "1.0";
-    //目前给的测试环境的
-    final String channel = "2019167";
-
-
-    PriceResponse response = service.searchPrice(priceRequest, vendorId, channel, version, secretKey);
+    PriceResponse response = service.searchPrice(priceRequest, channel, type, version, secretKey);
 
     assertNotNull(response);
 
@@ -64,7 +58,7 @@ class CarRentalServiceTest {
   void test_createOrder() {
     OrderCreateRequest request = new OrderCreateRequest();
     request.setUseType(1);
-    request.setPatternType(1);
+    request.setPatternType(2);
     request.setFixedCode("SHA");
     request.setCityCode("2");
 
@@ -78,51 +72,31 @@ class CarRentalServiceTest {
 
     request.setUseTime(DateUtil.addDays(DateUtil.getCurDateTime(), 1));
 //    request.setOrderId("ABCDEFG");
-    request.setOrderId(12345679l);
+    request.setOrderNo("12345679");
     request.setVehicleType(1);
+
+    request.setPrice(160.64);
 
     request.setMobile("18888889999");
 
-//    测试环境
-//    VendorID：为空
-//    Version：1.0
-//    Channel: 为空
-//    TimeStamp：当前时间
-//    secrect Key: 12345678  （测试环境固定为12345678）
-
-    final String vendorId = "";
-    final String version = "1.0";
-    //目前给的测试环境的
-    final String channel = "2019167";
-
     //TODO 此处有些问题，目前传送的参数明显是错误的，但是系统返回了，明天问问什么含义
 
-    PriceResponse response = service.createOrder(request, vendorId, channel, version, secretKey);
+    PriceResponse response = service.createOrder(request, channel, type, version, secretKey);
 
     assertNotNull(response);
 
     assertEquals("OK", response.getMsgCode());
 
-//    {"ServiceOrderId":"9630898","MsgCode":"OK","Message":"OK"}
-//    {"ServiceOrderId":"9630898","MsgCode":"OK","Message":"OK"}
-//    {"ServiceOrderId":"9630898","MsgCode":"OK","Message":"OK"}
-//    {"ServiceOrderId":"9630898","MsgCode":"OK","Message":"OK"}
-//    {"ServiceOrderId":"9630898","MsgCode":"OK","Message":"OK"}
-//    {"ServiceOrderId":"9630898","MsgCode":"OK","Message":"OK"}
+//    {"EtripOrderId":"3373768","MsgCode":"OK","Message":"OK"}
   }
 
   @Test
   void test_queryOrder() {
-    final String vendorId = "";
-    final String version = "1.0";
-    //目前给的测试环境的
-    final String channel = "2019167";
-
     OrderQueryRequest request = new OrderQueryRequest();
-    request.setOrderID(9630898);
+    request.setThirdOrderId("12345679");
 
 
-    PriceResponse response = service.queryOrder(request, vendorId, channel, version, secretKey);
+    PriceResponse response = service.queryOrder(request, channel, type, version, secretKey);
 //
     assertNotNull(response);
 

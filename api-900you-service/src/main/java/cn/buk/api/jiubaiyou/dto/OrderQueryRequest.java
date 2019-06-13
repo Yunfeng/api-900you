@@ -9,18 +9,18 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 public class OrderQueryRequest {
 
-  @JSONField(name = "EtripOrderID")
-  private long orderID;
-
   /**
-   * 平台订单编号
-   * @return
+   * 己方的订单号
    */
-  public long getOrderID() {
-    return orderID;
+  @JSONField(name = "ThirdOrderID")
+  private String thirdOrderId;
+
+
+  public String getThirdOrderId() {
+    return thirdOrderId;
   }
 
-  public void setOrderID(long orderID) {
-    this.orderID = orderID;
+  public void setThirdOrderId(String thirdOrderId) {
+    this.thirdOrderId = thirdOrderId;
   }
 }
