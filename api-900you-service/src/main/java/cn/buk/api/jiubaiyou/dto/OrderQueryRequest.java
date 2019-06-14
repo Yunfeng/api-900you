@@ -15,6 +15,13 @@ public class OrderQueryRequest {
   @JSONField(name = "ThirdOrderID")
   private String thirdOrderId;
 
+  /**
+   * 900游订单编号
+   */
+  @JSONField(name = "EtripOrderID")
+  private String etripOrderId;
+
+
 
   public String getThirdOrderId() {
     return thirdOrderId;
@@ -22,5 +29,13 @@ public class OrderQueryRequest {
 
   public void setThirdOrderId(String thirdOrderId) {
     this.thirdOrderId = thirdOrderId;
+  }
+
+  public String getEtripOrderId() {
+    return etripOrderId;
+  }
+
+  public void setEtripOrderId(String etripOrderId) {
+    this.etripOrderId = etripOrderId;
   }
 }

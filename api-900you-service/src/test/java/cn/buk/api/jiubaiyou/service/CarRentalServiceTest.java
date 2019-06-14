@@ -123,4 +123,17 @@ class CarRentalServiceTest {
     assertEquals("订单已取消", response.getMessage());
   }
 
+  @Test
+  void test_queryDriverLocation() {
+    OrderQueryRequest request = new OrderQueryRequest();
+    request.setEtripOrderId("8952875");
+
+    BaseResponse response = service.queryDriverLocation(request, channel, type, version, secretKey);
+//
+    assertNotNull(response);
+
+    assertEquals("ERROR", response.getMsgCode());
+    assertEquals("订单已取消", response.getMessage());
+  }
+
 }

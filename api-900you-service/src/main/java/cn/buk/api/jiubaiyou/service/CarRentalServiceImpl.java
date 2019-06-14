@@ -70,6 +70,16 @@ public class CarRentalServiceImpl implements CarRentalService {
     return JSON.parseObject(responseStr, BaseResponse.class);
   }
 
+  @Override
+  public BaseResponse queryDriverLocation(OrderQueryRequest request, String channel, String type,
+      String version, String secretKey) {
+    final String content = JSON.toJSONString(request);
+
+    String responseStr = execApiRequest("querydriverlocation", content, channel, type, version, secretKey);
+
+    return JSON.parseObject(responseStr, BaseResponse.class);
+  }
+
   private String execApiRequest(final String apiName, final String content, final String channel, final String type, final String version, final String secretKey) {
     final String timestamp = DateUtil.formatDate(DateUtil.getCurDateTime(), "yyyyMMddHHmmss");
     System.out.println("timestamp: " + timestamp);

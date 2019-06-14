@@ -62,4 +62,15 @@ public interface CarRentalService {
    * @return
    */
   BaseResponse cancelOrder(OrderQueryRequest request, final String channel, final String type, String version, String secretKey);
+
+  /**
+   * 司机位置查询接口
+   * @param request
+   * @param channel
+   * @param type
+   * @param version
+   * @param secretKey
+   * @return
+   */
+  BaseResponse queryDriverLocation(OrderQueryRequest request, String channel, String type, String version, String secretKey);
 }
