@@ -3,7 +3,10 @@ package cn.buk.api.jiubaiyou.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import cn.buk.api.jiubaiyou.dto.BaseResponse;
 import cn.buk.api.jiubaiyou.dto.OrderCreateRequest;
+import cn.buk.api.jiubaiyou.dto.OrderCreateResponse;
+import cn.buk.api.jiubaiyou.dto.OrderInfoResponse;
 import cn.buk.api.jiubaiyou.dto.OrderQueryRequest;
 import cn.buk.api.jiubaiyou.dto.PriceRequest;
 import cn.buk.api.jiubaiyou.dto.PriceResponse;
@@ -21,6 +24,9 @@ class CarRentalServiceTest {
   private final String channel = "shangyou";
   private final String type = "p2p";
   private final String version = "1.0";
+
+  //租车订单号
+  private final String rentalOrderNo = "1234567890";
 
 
   @BeforeEach
@@ -71,8 +77,7 @@ class CarRentalServiceTest {
     request.setAuseLocationLatitude("31.196099");
 
     request.setUseTime(DateUtil.addDays(DateUtil.getCurDateTime(), 1));
-//    request.setOrderId("ABCDEFG");
-    request.setOrderNo("12345679");
+    request.setOrderNo(rentalOrderNo);
     request.setVehicleType(1);
 
     request.setPrice(160.64);
@@ -81,28 +86,41 @@ class CarRentalServiceTest {
 
     //TODO 此处有些问题，目前传送的参数明显是错误的，但是系统返回了，明天问问什么含义
 
-    PriceResponse response = service.createOrder(request, channel, type, version, secretKey);
+    OrderCreateResponse response = service.createOrder(request, channel, type, version, secretKey);
 
     assertNotNull(response);
 
     assertEquals("OK", response.getMsgCode());
+    assertEquals("OK", response.getMessage());
+    assertEquals("8952875", response.getEtripOrderID());
 
-//    {"EtripOrderId":"3373768","MsgCode":"OK","Message":"OK"}
+
   }
 
   @Test
   void test_queryOrder() {
     OrderQueryRequest request = new OrderQueryRequest();
-    request.setThirdOrderId("12345679");
+    request.setThirdOrderId(rentalOrderNo);
 
-
-    PriceResponse response = service.queryOrder(request, channel, type, version, secretKey);
+    OrderInfoResponse response = service.queryOrder(request, channel, type, version, secretKey);
 //
     assertNotNull(response);
 
     assertEquals("OK", response.getMsgCode());
+    assertEquals(3, response.getOrderStatus());
+  }
 
-//    {"ServiceOrderId":"9630898","MsgCode":"OK","Message":"OK"}
+  @Test
+  void test_cancelOrder() {
+    OrderQueryRequest request = new OrderQueryRequest();
+    request.setThirdOrderId(rentalOrderNo);
+
+    BaseResponse response = service.cancelOrder(request, channel, type, version, secretKey);
+//
+    assertNotNull(response);
+
+    assertEquals("ERROR", response.getMsgCode());
+    assertEquals("订单已取消", response.getMessage());
   }
 
 }

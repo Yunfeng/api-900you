@@ -1,6 +1,9 @@
 package cn.buk.api.jiubaiyou.service;
 
+import cn.buk.api.jiubaiyou.dto.BaseResponse;
 import cn.buk.api.jiubaiyou.dto.OrderCreateRequest;
+import cn.buk.api.jiubaiyou.dto.OrderCreateResponse;
+import cn.buk.api.jiubaiyou.dto.OrderInfoResponse;
 import cn.buk.api.jiubaiyou.dto.OrderQueryRequest;
 import cn.buk.api.jiubaiyou.dto.PriceRequest;
 import cn.buk.api.jiubaiyou.dto.PriceResponse;
@@ -28,24 +31,43 @@ public class CarRentalServiceImpl implements CarRentalService {
   }
 
   @Override
-  public PriceResponse createOrder(OrderCreateRequest request, String channel, String type,
+  public OrderCreateResponse createOrder(OrderCreateRequest request, String channel, String type,
       String version, String secretKey) {
 
     final String content = JSON.toJSONString(request);
 
     String responseStr = execApiRequest("ordercreate", content, channel, type, version, secretKey);
 
-    return JSON.parseObject(responseStr, PriceResponse.class);
+    return JSON.parseObject(responseStr, OrderCreateResponse.class);
   }
 
   @Override
-  public PriceResponse queryOrder(OrderQueryRequest request, final String channel, final String type,
+  public OrderInfoResponse queryOrder(OrderQueryRequest request, final String channel, final String type,
       String version, String secretKey) {
     final String content = JSON.toJSONString(request);
 
     String responseStr = execApiRequest("orderquery", content, channel, type, version, secretKey);
 
-    return JSON.parseObject(responseStr, PriceResponse.class);
+    return JSON.parseObject(responseStr, OrderInfoResponse.class);
+  }
+
+  /**
+   * 取消订单
+   * @param request
+   * @param channel
+   * @param type
+   * @param version
+   * @param secretKey
+   * @return
+   */
+  @Override
+  public BaseResponse cancelOrder(OrderQueryRequest request, String channel,
+      String type, String version, String secretKey) {
+    final String content = JSON.toJSONString(request);
+
+    String responseStr = execApiRequest("ordercancel", content, channel, type, version, secretKey);
+
+    return JSON.parseObject(responseStr, BaseResponse.class);
   }
 
   private String execApiRequest(final String apiName, final String content, final String channel, final String type, final String version, final String secretKey) {

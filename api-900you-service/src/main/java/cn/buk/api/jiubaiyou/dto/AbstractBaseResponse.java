@@ -4,7 +4,7 @@ package cn.buk.api.jiubaiyou.dto;
  * 接口响应的基础类
  * @author yfdai
  */
-public class AbstractBaseResponse {
+public abstract class AbstractBaseResponse {
 
   /**
    * OK:成功

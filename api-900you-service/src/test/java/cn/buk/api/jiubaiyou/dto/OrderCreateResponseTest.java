@@ -9,7 +9,7 @@ class OrderCreateResponseTest {
 
   @Test
   public void test() {
-    final String jsonStr = "{\"ServiceOrderId\":\"9630898\",\"MsgCode\":\"OK\",\"Message\":\"OK\"}";
+    final String jsonStr = "{\"EtripOrderID\":\"8952875\",\"MsgCode\":\"OK\",\"Message\":\"OK\"}";
 
     OrderCreateResponse response = JSON.parseObject(jsonStr, OrderCreateResponse.class);
 
@@ -17,6 +17,6 @@ class OrderCreateResponseTest {
 
     assertEquals("OK", response.getMsgCode());
     assertEquals("OK", response.getMessage());
-    assertEquals("9630898", response.getServiceOrderId());
+    assertEquals("8952875", response.getEtripOrderID());
   }
 }

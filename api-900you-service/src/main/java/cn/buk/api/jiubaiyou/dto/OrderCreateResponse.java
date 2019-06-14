@@ -1,5 +1,7 @@
 package cn.buk.api.jiubaiyou.dto;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * 下单接口的返回
  *
@@ -15,13 +17,31 @@ public class OrderCreateResponse extends AbstractBaseResponse {
   /**
    * 900游订单编号
    */
-  private String serviceOrderId;
+  @JSONField(name = "EtripOrderID")
+  private String etripOrderID;
 
-  public String getServiceOrderId() {
-    return serviceOrderId;
+
+  /**
+   * 接机人联系电话
+   * 非必须（选择举牌接机时必须）
+   */
+  @JSONField(name = "PickUpPhone")
+  private String pickUpPhone;
+
+
+  public String getEtripOrderID() {
+    return etripOrderID;
   }
 
-  public void setServiceOrderId(String serviceOrderId) {
-    this.serviceOrderId = serviceOrderId;
+  public void setEtripOrderID(String etripOrderID) {
+    this.etripOrderID = etripOrderID;
+  }
+
+  public String getPickUpPhone() {
+    return pickUpPhone;
+  }
+
+  public void setPickUpPhone(String pickUpPhone) {
+    this.pickUpPhone = pickUpPhone;
   }
 }
