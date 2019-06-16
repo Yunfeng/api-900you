@@ -20,8 +20,8 @@ public interface CarRentalService {
    * 查询租车价格
    *
    * @param request 请求参数
-   * @param vendorId 供应商ID
    * @param channel 通道
+   * @param type 通道
    * @param version 版本
    * @param secretKey 秘钥
    * @return 返回PriceResponse对象
@@ -33,8 +33,8 @@ public interface CarRentalService {
    * 创建订单
    *
    * @param priceRequest
-   * @param vendorId
    * @param channel
+   * @param type 通道
    * @param version
    * @param secretKey
    * @return
@@ -43,9 +43,9 @@ public interface CarRentalService {
 
   /**
    * 查询订单
-   * @param priceRequest
-   * @param vendorId
+   * @param request
    * @param channel
+   * @param type 通道
    * @param version
    * @param secretKey
    * @return
@@ -55,7 +55,7 @@ public interface CarRentalService {
   /**
    * 取消订单
    * @param request
-   * @param channel
+   * @param channel 通道
    * @param type
    * @param version
    * @param secretKey
