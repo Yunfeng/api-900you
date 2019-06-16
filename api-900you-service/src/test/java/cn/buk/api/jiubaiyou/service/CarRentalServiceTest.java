@@ -12,8 +12,10 @@ import cn.buk.api.jiubaiyou.dto.PriceRequest;
 import cn.buk.api.jiubaiyou.dto.PriceResponse;
 import cn.buk.util.DateUtil;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+@Disabled
 class CarRentalServiceTest {
 
   private final String secretKey = "12345678";
