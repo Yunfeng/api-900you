@@ -4,7 +4,7 @@
   <parent>
     <groupId>cn.buk.api.900you</groupId>
     <artifactId>api-900you</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
   </parent>
 
   <artifactId>api-900you-service</artifactId>
