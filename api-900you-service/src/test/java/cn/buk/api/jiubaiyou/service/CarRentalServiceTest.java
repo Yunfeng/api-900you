@@ -41,7 +41,7 @@ class CarRentalServiceTest {
     PriceRequest priceRequest = new PriceRequest();
     priceRequest.setUseType(1);
     priceRequest.setPatternType(1);
-    priceRequest.setFixedCode("SHA");
+    priceRequest.setFixedCode("PVG");
     priceRequest.setCityCode("2");
 
     priceRequest.setDuseLocationAddress("静安寺");

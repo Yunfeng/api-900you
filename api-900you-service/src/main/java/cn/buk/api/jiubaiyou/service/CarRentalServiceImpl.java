@@ -82,9 +82,8 @@ public class CarRentalServiceImpl implements CarRentalService {
 
   private String execApiRequest(final String apiName, final String content, final String channel, final String type, final String version, final String secretKey) {
     final String timestamp = DateUtil.formatDate(DateUtil.getCurDateTime(), "yyyyMMddHHmmss");
-//    System.out.println("timestamp: " + timestamp);
 
-//    System.out.println("消息体明文：" + content);
+    System.out.println("消息体明文：" + content);
 
     final String encryptedBody;
     try {
@@ -107,7 +106,7 @@ public class CarRentalServiceImpl implements CarRentalService {
     final String API_URL = "http://api-emu.900etrip.com/" + channel + "/" + type + "/" + apiName + "/" + version + "/" + timestamp + "/" + sign;
 //    System.out.println(API_URL);
 
-    //调用接
+    //调用接口
     final String result = HttpUtil.postUrl(API_URL, encryptedBody);
     System.out.println(result);
 
