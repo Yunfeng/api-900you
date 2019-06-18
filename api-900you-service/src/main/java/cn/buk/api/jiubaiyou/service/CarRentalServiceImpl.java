@@ -27,7 +27,13 @@ public class CarRentalServiceImpl implements CarRentalService {
 
     String responseStr = execApiRequest("productquery", content, channel, type, version, secretKey);
 
-    return JSON.parseObject(responseStr, PriceResponse.class);
+    try {
+      return JSON.parseObject(responseStr, PriceResponse.class);
+    } catch (Exception ex) {
+      System.out.println(responseStr);
+      ex.printStackTrace();
+      return null;
+    }
   }
 
   @Override
