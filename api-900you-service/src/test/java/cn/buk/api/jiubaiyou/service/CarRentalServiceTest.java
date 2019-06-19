@@ -86,6 +86,7 @@ class CarRentalServiceTest {
     request.setVehicleType(1);
 
     request.setPrice(160.64);
+    request.setPriceMark("TEST");
 
     request.setMobile("18888889999");
 
