@@ -24,6 +24,7 @@ public class OrderCreateRequest extends AbstractBaseRequest {
   /**
    * 最长25位，非必须	价格标示符号，用来标明本次约定的价格（下单时使用）
    */
+  @JSONField(name = "PriceMark")
   private String priceMark;
 
   /**
