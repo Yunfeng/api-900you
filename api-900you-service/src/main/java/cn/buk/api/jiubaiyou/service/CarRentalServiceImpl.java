@@ -110,7 +110,7 @@ public class CarRentalServiceImpl implements CarRentalService {
 
 
     final String API_URL = "http://api-emu.900etrip.com/" + channel + "/" + type + "/" + apiName + "/" + version + "/" + timestamp + "/" + sign;
-//    System.out.println(API_URL);
+    System.out.println(API_URL);
 
     //调用接口
     final String result = HttpUtil.postUrl(API_URL, encryptedBody);

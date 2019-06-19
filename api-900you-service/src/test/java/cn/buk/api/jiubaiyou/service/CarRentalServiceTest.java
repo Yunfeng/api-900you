@@ -60,6 +60,9 @@ class CarRentalServiceTest {
     assertNotNull(response);
 
     assertEquals("OK", response.getMsgCode());
+    assertEquals("5AD93BE3A5A984CB18D40412869B9B96", response.getPriceMark());
+//    E45BAB29364A25EC18A88A87726A0F3D
+    //D71831E120BCCAE5F283A19E50B1BB3B
   }
 
   @Test
