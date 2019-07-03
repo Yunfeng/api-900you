@@ -19,7 +19,7 @@ import com.alibaba.fastjson.JSON;
  */
 public class CarRentalServiceImpl implements CarRentalService {
 
-  private final String API_BASE_URL = "https://api.900etrip.com";
+  private final String API_BASE_URL = "https://api.900etrip.com/";
 //  private final String API_BASE_URL = "http://api-emu.900etrip.com/";
 
   @Override
