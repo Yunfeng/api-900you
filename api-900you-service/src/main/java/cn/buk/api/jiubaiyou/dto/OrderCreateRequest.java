@@ -51,6 +51,12 @@ public class OrderCreateRequest extends AbstractBaseRequest {
   @JSONField(name = "FlightNumber")
   private String flightNo;
 
+  /**
+   * 订单备注
+   */
+  @JSONField(name = "OrderRemark")
+  private String remark;
+
 
   public java.lang.String getFlightNo() {
     return flightNo;
@@ -107,5 +113,13 @@ public class OrderCreateRequest extends AbstractBaseRequest {
 
   public void setOrderNo(String orderNo) {
     this.orderNo = orderNo;
+  }
+
+  public String getRemark() {
+    return remark;
+  }
+
+  public void setRemark(String remark) {
+    this.remark = remark;
   }
 }
