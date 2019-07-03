@@ -19,6 +19,9 @@ import com.alibaba.fastjson.JSON;
  */
 public class CarRentalServiceImpl implements CarRentalService {
 
+  private final String API_BASE_URL = "https://api.900etrip.com";
+//  private final String API_BASE_URL = "http://api-emu.900etrip.com/";
+
   @Override
   public PriceResponse searchPrice(PriceRequest request, final String channel, final String type,
       final String version, final String secretKey) {
@@ -109,7 +112,7 @@ public class CarRentalServiceImpl implements CarRentalService {
 //    System.out.println(sign);
 
 
-    final String API_URL = "http://api-emu.900etrip.com/" + channel + "/" + type + "/" + apiName + "/" + version + "/" + timestamp + "/" + sign;
+    final String API_URL = API_BASE_URL + channel + "/" + type + "/" + apiName + "/" + version + "/" + timestamp + "/" + sign;
     System.out.println(API_URL);
 
     //调用接口

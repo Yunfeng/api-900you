@@ -28,7 +28,7 @@ class CarRentalServiceTest {
   private final String version = "1.0";
 
   //租车订单号
-  private final String rentalOrderNo = "1234567890";
+  private final String rentalOrderNo = "6271261";
 
 
   @BeforeEach
@@ -106,7 +106,9 @@ class CarRentalServiceTest {
   @Test
   void test_queryOrder() {
     OrderQueryRequest request = new OrderQueryRequest();
-    request.setThirdOrderId(rentalOrderNo);
+//    request.setThirdOrderId(rentalOrderNo);
+    request.setThirdOrderId("130112");
+
 
     OrderInfoResponse response = service.queryOrder(request, channel, type, version, secretKey);
 //
@@ -119,7 +121,7 @@ class CarRentalServiceTest {
   @Test
   void test_cancelOrder() {
     OrderQueryRequest request = new OrderQueryRequest();
-    request.setThirdOrderId(rentalOrderNo);
+    request.setThirdOrderId("130112");
 
     BaseResponse response = service.cancelOrder(request, channel, type, version, secretKey);
 //
