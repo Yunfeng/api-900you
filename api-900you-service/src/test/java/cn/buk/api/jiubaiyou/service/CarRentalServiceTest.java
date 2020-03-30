@@ -52,7 +52,7 @@ class CarRentalServiceTest {
     priceRequest.setAuseLocationLongitude("121.339766");
     priceRequest.setAuseLocationLatitude("31.196099");
 
-    priceRequest.setUseTime(DateUtil.getCurDateTime());
+    priceRequest.setUseTime(DateUtil.addDays(DateUtil.getCurDateTime(), 3));
 
 
     PriceResponse response = service.searchPrice(priceRequest, channel, type, version, secretKey);
